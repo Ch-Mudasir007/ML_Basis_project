@@ -1,52 +1,61 @@
-# Data Preparation and Feeding for Training a Sentiment Analysis Model
+# Sentiment Analysis with Pre-trained Models
 
-## Introduction
+## Objective
+The objective of this project is to perform sentiment analysis on movie reviews using a pre-trained transformer model and evaluate its performance.
 
-This script focuses on the preparation of text data for training a sentiment analysis model. It covers the loading, cleaning, and conversion of datasets into formats suitable for machine learning tasks, particularly using the IMDb dataset.
+## Data Description
+- **Dataset:** IMDB movie reviews dataset
+- **Source:** Hugging Face datasets library
+- **Sample size:** 500 reviews (subset of the full dataset)
+- **Features:**
+  - `'text'`: The movie review text
+  - `'label'`: Binary sentiment label (0 for negative, 1 for positive)
 
-## Project Objectives
+## Methodology
 
-The primary goal of this script is to address the following key tasks:
+### Data Preparation
+1. Load the IMDB dataset using the Hugging Face datasets library.
+2. Clean the text data:
+   - Remove HTML tags
+   - Remove special characters
+   - Remove extra spaces
+3. Truncate reviews to fit within the model's maximum token limit (512 tokens).
 
-1. Loading a dataset from the Hugging Face library.
-2. Cleaning the text data.
-3. Converting the dataset into a Pandas DataFrame.
-4. Calculating the length of text entries for analysis.
+### Model
+- **Pre-trained model:** DistilBERT base model fine-tuned on SST-2 dataset
+- **Task:** Sentiment analysis (binary classification)
+- **Library:** Hugging Face Transformers
 
-## Why This Script?
+### Analysis Process
+1. Apply sentiment analysis to the cleaned and truncated reviews.
+2. Process reviews in batches to improve efficiency.
+3. Convert model outputs to binary labels (0 for negative, 1 for positive).
+4. Split the data into training (80%) and test (20%) sets.
 
-This script is designed to provide a practical example of how to preprocess and handle text data for NLP tasks. It helps in understanding the essential steps required before feeding the data into a machine learning model.
+## Model Evaluation
+The model's performance is evaluated on the test set using the following metrics:
+## Results
+- Accuracy: 0.89
+- Precision: 0.0
+- Recall: 0.0
+- F1-score: 0.0
 
-- Gain hands-on experience with data loading and preprocessing.
-- Learn how to convert datasets into a format suitable for analysis.
-- Understand basic text cleaning techniques.
-- Perform initial exploratory data analysis on text length.
+
+## Discussion
+The model achieves a high accuracy of 89%, but the precision, recall, and F1-score are 0. This unusual result suggests that:
+1. The model might be predicting all reviews as one class (likely negative, given the dataset's characteristics).
+2. There could be an issue with the label encoding or prediction processing.
+3. The small sample size (500 reviews) might not be representative of the full dataset.
 
 ## Benefits
-
-Upon completion of working through this script, participants will:
-
-1. Understand how to load datasets using the Hugging Face library.
-2. Be able to clean and preprocess text data.
-3. Convert datasets into Pandas DataFrames for easy manipulation.
-4. Calculate and analyze the length of text entries.
-
-## Script Structure
-
-1. **Loading the IMDb dataset**: The script begins by loading the IMDb dataset from the Hugging Face library, which contains movie reviews for sentiment analysis tasks.
-2. **Converting the dataset to a Pandas DataFrame**: After loading the dataset, it is converted into a Pandas DataFrame to facilitate easier manipulation and analysis.
-3. **Cleaning the text data**: A `clean_text` function is defined to perform text cleaning operations. This function can be customized to include various text preprocessing steps such as removing special characters, converting text to lowercase, etc.
-4. **Calculating the length of text entries**: The length of the text in the first row of the dataset is calculated to give an initial understanding of the data size and distribution.
+- Utilizes a pre-trained model, reducing the need for extensive training data and computational resources.
+- Provides a quick way to perform sentiment analysis on text data.
+- Can be easily integrated into larger natural language processing pipelines.
 
 ## Conclusion
+While the high accuracy is promising, the other metrics indicate that the model's performance needs improvement. Further investigation into the data distribution, label encoding, and possibly using a larger sample size or the full dataset could lead to more reliable and balanced results.
 
-This script serves as an introductory exploration into the data preparation phase of a sentiment analysis project. By addressing fundamental preprocessing steps, it offers insights into:
 
-1. The importance of loading and converting datasets.
-2. The role of text cleaning in preparing data for analysis.
-3. Basic exploratory data analysis techniques, such as calculating text lengths.
-
-This script provides a foundation for further exploration and development in NLP tasks, equipping participants with the necessary skills to handle and preprocess text data effectively.
   
 Notebook link[https://colab.research.google.com/drive/1oeT9ssV2fxbdxNuiRzcLvAmq0BAX1F64#scrollTo=aoD4j14qSKer]
 
